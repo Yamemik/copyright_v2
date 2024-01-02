@@ -1,4 +1,4 @@
-# copyright
+## copyright
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -53,20 +53,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-
-```
-
 ## git
 
 ```bash
@@ -79,6 +65,11 @@ git remote add origin https://github.com/Yamemik/copyright_v2.git
 git push -u origin main
 # пуш с заменой
 git push -f origin main
+```
+
+## vps
+```bash
+pm2 start npm --name "backend" -- run server
 ```
 
 ## Stay in touch
