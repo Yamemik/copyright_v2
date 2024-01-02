@@ -4,13 +4,15 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export enum UserRole {
     ADMIN = "Администратор",
     EDITOR = "Редактор",
-    USER = "Пользователь",
-    GHOST = "Гость",
+    STUDENT = "Ученик",
+    GHOST = "Гость"
 }
 
-export enum UserGender {
-    MALE = "Мужской",
-    FEMAIL = "Женский"
+export enum UserAccessLevel {
+    LVL0 = "Без пакета",
+    LVL1 = "С первым пакетом",
+    LVL2 = "Со вторым пакетом",
+    LVL3 = "С третим пакетом"
 }
 
 @Entity('users')
@@ -25,35 +27,35 @@ export class UserEntity {
     @Column({ default: null })
     surname: string;
 
-    @Column({
-        type: "enum",
-        enum: UserGender,
-        default: null
-    })
-    gender: UserGender;
+    @Column({ default: null })
+    middlename: string;
 
     @Column({ default: null })
     birthday: Date;
 
     @Column({ unique: true })
-    nickname: string;
-
-    @Column({ unique: true })
-    telephone: string;
+    mail: string;
 
     @Column({ default: new Date() })
-    registrationDate: Date;
+    registration_date: Date;
 
     @Column({ default: null })
     avatar: string;
 
-    @Column()
+    @Column({ default: null })
     password: string;
 
     @Column({
         type: "enum",
         enum: UserRole,
-        default: UserRole.USER,
+        default: UserRole.STUDENT,
     })
     role: UserRole
+
+    @Column({
+        type: "enum",
+        enum: UserAccessLevel,
+        default: UserAccessLevel.LVL0,
+    })
+    access_level: UserAccessLevel
 }
