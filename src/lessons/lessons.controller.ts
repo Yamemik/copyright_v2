@@ -4,7 +4,7 @@ import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@Controller('lessons')
+@Controller('api/lessons')
 @ApiTags('lessons')
 export class LessonsController {
   constructor(private readonly lessonsService: LessonsService) { }
