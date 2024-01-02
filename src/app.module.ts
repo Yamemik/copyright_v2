@@ -5,9 +5,10 @@ import { UsersModule } from './users/users.module';
 import { SettingsModule } from './settings/settings.module';
 import { CoursesModule } from './courses/courses.module';
 import { LessonsModule } from './lessons/lessons.module';
+import { PackModule } from './pack/pack.module';
 
 @Module({
-  imports: [UsersModule, SettingsModule, CoursesModule, LessonsModule],
+  imports: [UsersModule, SettingsModule, CoursesModule, LessonsModule, PackModule],
   controllers: [AppController],
   providers: [AppService],
 })
