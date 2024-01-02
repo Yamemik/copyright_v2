@@ -77,6 +77,8 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Yamemik/copyright_v2.git
 git push -u origin main
+# пуш с заменой
+git push -f origin main
 ```
 
 ## Stay in touch
