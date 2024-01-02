@@ -64,7 +64,18 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
 ```
+
+## git
+
+echo "# copyright_v2" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Yamemik/copyright_v2.git
+git push -u origin main
 
 ## Stay in touch
 
