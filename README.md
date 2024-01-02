@@ -33,7 +33,7 @@ $
 $ npm i --save @nestjs/config
 ```
 
-## Command
+## Command NestJS
 
 ```bash
 $ 
