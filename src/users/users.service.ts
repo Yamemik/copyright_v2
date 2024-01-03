@@ -1,11 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from './entities/user.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(UserEntity)
+    private repository: Repository<UserEntity>
+  ) { }
+
+  async createUser(createUserDto: CreateUserDto) {
+    try {
+      const userData = await this.repository.save(createUserDto);
+
+      const { password, ...result } = userData;
+
+      return result;
+    }
+    catch (err) {
+      throw new ForbiddenException('Ошибка при регистрации');
+    }
   }
 
   findAll() {
