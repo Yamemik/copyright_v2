@@ -10,6 +10,7 @@ import { LessonsModule } from './lessons/lessons.module';
 import { UserEntity } from './users/entities/user.entity';
 import { CourseEntity } from './courses/entities/course.entity';
 import { LessonEntity } from './lessons/entities/lesson.entity';
+import { MailModule } from './mail/mail.module';
 
 
 @Module({
@@ -25,7 +26,7 @@ import { LessonEntity } from './lessons/entities/lesson.entity';
       entities: [UserEntity, CourseEntity, LessonEntity],
       synchronize: true,
     }),
-    UsersModule, SettingsModule, CoursesModule, LessonsModule,],
+    UsersModule, SettingsModule, CoursesModule, LessonsModule, MailModule,],
   controllers: [AppController],
   providers: [AppService],
 })
