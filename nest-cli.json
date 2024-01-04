@@ -4,7 +4,9 @@
 	"sourceRoot": "src",
 	"compilerOptions": {
 		"deleteOutDir": false,
-		"assets": ["mail/templates/**/*"],
+		"assets": [
+			"mail/templates/**/*"
+		],
 		"watchAssets": true
 	}
 }
