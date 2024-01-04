@@ -1,20 +1,17 @@
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    cors: false,
-    logger: ['log', 'fatal', 'error', 'warn', 'debug', 'verbose'],
-  });
+	const app = await NestFactory.create(AppModule, {
+		cors: false,
+	});
 
-  const config = new DocumentBuilder()
-    .setTitle('Copyright_v2')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document);
+	const config = new DocumentBuilder().setTitle("Курсы по копирайтингу").build();
 
-  await app.listen(8080);
+	const document = SwaggerModule.createDocument(app, config);
+	SwaggerModule.setup("swagger", app, document);
+
+	await app.listen(8080);
 }
 bootstrap();
