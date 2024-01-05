@@ -8,13 +8,6 @@ export enum UserRole {
     GHOST = "Гость"
 }
 
-export enum UserAccessLevel {
-    LVL0 = "Без пакета",
-    LVL1 = "С первым пакетом",
-    LVL2 = "Со вторым пакетом",
-    LVL3 = "С третим пакетом"
-}
-
 @Entity('users')
 export class UserEntity {
 
@@ -52,10 +45,6 @@ export class UserEntity {
     })
     role: UserRole
 
-    @Column({
-        type: "enum",
-        enum: UserAccessLevel,
-        default: UserAccessLevel.LVL0,
-    })
-    access_level: UserAccessLevel
+    @Column({ default: 0 })
+    access_level: Number
 }
