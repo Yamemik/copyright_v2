@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
       // or
       transport: {
         host: process.env.ML_HOST,
+        port: 25,
         secure: false,
         auth: {
           user: process.env.ML_USER,

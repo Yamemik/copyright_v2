@@ -20,7 +20,7 @@ export class UsersService {
 
       const { password, ...result } = userData;
 
-      this.mailService.sendUserConfirmation(userData, 'https://copyright-chu.ru')
+      await this.mailService.sendUserConfirmation(userData, 'https://copyright-chu.ru');
 
       return result;
     }
