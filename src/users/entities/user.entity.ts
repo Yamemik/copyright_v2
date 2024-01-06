@@ -2,10 +2,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 export enum UserRole {
-    ADMIN = "Администратор",
-    EDITOR = "Редактор",
-    STUDENT = "Ученик",
-    GHOST = "Гость"
+    ADMIN = "admin",
+    AUTHOR = "author",
+    STUDENT = "student",
 }
 
 @Entity('users')
@@ -15,22 +14,22 @@ export class UserEntity {
     id: number;
 
     @Column({ default: null })
-    name: string;
+    first_name: string;
 
     @Column({ default: null })
-    surname: string;
+    last_name: string;
 
     @Column({ default: null })
-    middlename: string;
+    middle_name: string;
 
     @Column({ default: null })
-    birthday: Date;
+    datebirthday: Date;
 
     @Column({ unique: true })
     mail: string;
 
     @Column({ default: new Date() })
-    registration_date: Date;
+    date_registration: Date;
 
     @Column({ default: null })
     avatar: string;
@@ -41,7 +40,7 @@ export class UserEntity {
     @Column({
         type: "enum",
         enum: UserRole,
-        default: UserRole.GHOST,
+        default: UserRole.STUDENT,
     })
     role: UserRole
 

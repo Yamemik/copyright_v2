@@ -9,15 +9,16 @@ export class MailService {
     async sendUserConfirmation(user: UserEntity, token: string) {
         const url = `example.com/auth/confirm?token=${token}`;
 
-        await this.mailerService.sendMail({
+        const answer = await this.mailerService.sendMail({
             to: user.mail,
             // from: '"Support Team" <support@example.com>', // override default from
             subject: 'Welcome to Nice App! Confirm your Email',
             template: './confirmation', // `.hbs` extension is appended automatically
             context: { // ✏️ filling curly brackets with content
-                name: user.name,
+                name: user.first_name,
                 url,
             },
         });
+        console.log(answer);
     }
 }

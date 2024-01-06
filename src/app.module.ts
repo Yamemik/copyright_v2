@@ -14,6 +14,7 @@ import { CourseEntity } from "./courses/entities/course.entity";
 import { SettingsModule } from "./settings/settings.module";
 
 import { MailModule } from "./mail/mail.module";
+import { SettingEntity } from "./settings/entities/setting.entity";
 
 @Module({
 	imports: [
@@ -25,7 +26,7 @@ import { MailModule } from "./mail/mail.module";
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_NAME,
-			entities: [UserEntity, CourseEntity, LessonEntity],
+			entities: [SettingEntity, UserEntity, CourseEntity, LessonEntity],
 			synchronize: true,
 		}),
 		UsersModule,
@@ -35,4 +36,4 @@ import { MailModule } from "./mail/mail.module";
 		MailModule,
 	],
 })
-export class AppModule {}
+export class AppModule { }
