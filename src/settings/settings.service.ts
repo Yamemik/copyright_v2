@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSettingDto } from './dto/create-setting.dto';
-import { UpdateSettingDto } from './dto/update-setting.dto';
+import { SettingEntity } from './entities/setting.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+
 
 @Injectable()
 export class SettingsService {
-  create(createSettingDto: CreateSettingDto) {
-    return 'This action adds a new setting';
+  constructor(
+    @InjectRepository(SettingEntity)
+    private repository: Repository<SettingEntity>
+  ) { }
+
+  async create(createSettingDto: CreateSettingDto) {
+    return await this.repository.save(createSettingDto);
   }
 
-  findAll() {
-    return `This action returns all settings`;
+  async findOne() {
+    return await this.repository.findOneBy({ id: 1 });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} setting`;
-  }
-
-  update(id: number, updateSettingDto: UpdateSettingDto) {
-    return `This action updates a #${id} setting`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} setting`;
+  async update(updateSettingDto: CreateSettingDto) {
+    return await this.repository.update({ id: 1 }, updateSettingDto);
   }
 }

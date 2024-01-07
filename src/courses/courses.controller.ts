@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('api/courses')
 @ApiTags('courses')
@@ -10,16 +10,19 @@ export class CoursesController {
   constructor(private readonly coursesService: CoursesService) { }
 
   @Post()
+  @ApiOperation({ summary: 'Создать курс' })
   create(@Body() createCourseDto: CreateCourseDto) {
     return this.coursesService.create(createCourseDto);
   }
 
   @Get()
+  @ApiOperation({ summary: 'Получить все курсы' })
   findAll() {
     return this.coursesService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Получить курс по id' })
   findOne(@Param('id') id: string) {
     return this.coursesService.findOne(+id);
   }

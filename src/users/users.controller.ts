@@ -17,11 +17,13 @@ export class UsersController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Получить всех пользователей' })
   findAll() {
     return this.usersService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Получить пользователя по id' })
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
