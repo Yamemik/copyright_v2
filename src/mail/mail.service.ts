@@ -6,8 +6,8 @@ import { UserEntity } from 'src/users/entities/user.entity';
 export class MailService {
     constructor(private mailerService: MailerService) { }
 
-    async sendUserConfirmation(user: UserEntity, token: string) {
-        const url = `example.com/auth/confirm?token=${token}`;
+    async sendUserConfirmation(user: UserEntity, url: string) {
+        //const url = `example.com/auth/confirm?token=${token}`;
 
         const answer = await this.mailerService.sendMail({
             to: user.email,
