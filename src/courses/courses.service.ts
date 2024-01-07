@@ -13,15 +13,15 @@ export class CoursesService {
   ) { }
 
   async create(createCourseDto: CreateCourseDto) {
-    return this.repository.save(createCourseDto)
+    return await this.repository.save(createCourseDto)
   }
 
   async findAll() {
-    return this.repository.find();
+    return await this.repository.find();
   }
 
   async findOne(id: number) {
-    return this.repository.findOneBy({ id });
+    return await this.repository.findOneBy({ id });
   }
 
   update(id: number, updateCourseDto: UpdateCourseDto) {

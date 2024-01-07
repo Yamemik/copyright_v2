@@ -7,5 +7,5 @@ export class SettingEntity {
    id: number;
 
    @Column()
-   name: string;
+   object: string;
 }

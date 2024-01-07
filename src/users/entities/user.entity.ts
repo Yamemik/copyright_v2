@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { PaymentEntity } from "src/payment/entities/payment.entity";
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 
 
 export enum UserRole {
@@ -42,8 +43,11 @@ export class UserEntity {
         enum: UserRole,
         default: UserRole.STUDENT,
     })
-    role: UserRole
+    role: UserRole;
 
     @Column({ default: 0 })
-    access_level: Number
+    access_level: Number;
+
+    @OneToMany(() => PaymentEntity, (payment) => payment.user)
+    payment: PaymentEntity;
 }

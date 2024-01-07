@@ -16,6 +16,7 @@ import { SettingsModule } from "./settings/settings.module";
 import { MailModule } from "./mail/mail.module";
 import { SettingEntity } from "./settings/entities/setting.entity";
 import { PaymentModule } from './payment/payment.module';
+import { PaymentEntity } from "./payment/entities/payment.entity";
 
 @Module({
 	imports: [
@@ -27,7 +28,7 @@ import { PaymentModule } from './payment/payment.module';
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_NAME,
-			entities: [SettingEntity, UserEntity, CourseEntity, LessonEntity],
+			entities: [SettingEntity, UserEntity, PaymentEntity, CourseEntity, LessonEntity],
 			synchronize: true,
 		}),
 		UsersModule,

@@ -1,19 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
+import { PaymentEntity } from './entities/payment.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class PaymentService {
-  create(createPaymentDto: CreatePaymentDto) {
-    return 'This action adds a new payment';
+  constructor(
+    @InjectRepository(PaymentEntity)
+    private repository: Repository<PaymentEntity>
+  ) { }
+
+  async create(createPaymentDto: CreatePaymentDto) {
+    return await this.repository.save(createPaymentDto);
   }
 
-  findAll() {
-    return `This action returns all payment`;
+  async findAll() {
+    return await this.repository
+      .createQueryBuilder("payment")
+      .leftJoinAndSelect("payment.user", "user")
+      .getMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} payment`;
+  async findOne(id: number) {
+    return await this.repository
+      .createQueryBuilder("payment")
+      .where({ id })
+      .leftJoinAndSelect("payment.user", "user")
+      .getOne();
   }
 
   update(id: number, updatePaymentDto: UpdatePaymentDto) {
