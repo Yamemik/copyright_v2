@@ -9,7 +9,7 @@ import { ApiBody, ApiTags, ApiOperation } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Post('/create')
+  @Post('/reg_begin')
   @ApiBody({ type: CreateUserDto })
   @ApiOperation({ summary: 'Создание юзера, создание заказа и отправка письма' })
   async create(@Body() createUserDto: CreateUserDto) {
