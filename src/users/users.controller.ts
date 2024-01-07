@@ -11,7 +11,7 @@ export class UsersController {
 
   @Post('/reg_begin')
   @ApiBody({ type: CreateUserDto })
-  @ApiOperation({ summary: 'Создание юзера, создание заказа и отправка письма' })
+  @ApiOperation({ summary: 'Создание юзера, заказа и отправка письма' })
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }

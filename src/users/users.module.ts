@@ -6,6 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { MailModule } from '../mail/mail.module';
 import { PaymentModule } from 'src/payment/payment.module';
 
+
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
