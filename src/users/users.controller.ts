@@ -9,9 +9,9 @@ import { ApiBody, ApiTags, ApiOperation } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Post('/reg')
+  @Post('/create')
   @ApiBody({ type: CreateUserDto })
-  @ApiOperation({ summary: 'Регистрация юзера после оплаты и отправка письма' })
+  @ApiOperation({ summary: 'Создание юзера, создание заказа и отправка письма' })
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
@@ -34,7 +34,8 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  @ApiOperation({ summary: 'Удалить пользователя по id' })
+  async remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
 }

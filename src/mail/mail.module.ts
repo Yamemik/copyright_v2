@@ -9,11 +9,9 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     ConfigModule.forRoot(),
     MailerModule.forRoot({
-      // transport: 'smtps://user@example.com:topsecret@smtp.example.com',
-      // or
       transport: {
         host: process.env.ML_HOST,
-        port: 25,
+        port: Number(process.env.ML_PORT),
         secure: false,
         auth: {
           user: process.env.ML_USER,
@@ -25,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       },
       template: {
         dir: join(__dirname, 'templates'),
-        adapter: new HandlebarsAdapter(), // or new PugAdapter() or new EjsAdapter()
+        adapter: new HandlebarsAdapter(),
         options: {
           strict: true,
         },
@@ -33,6 +31,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   providers: [MailService],
-  exports: [MailService], // 👈 export for DI
+  exports: [MailService],
 })
 export class MailModule { }

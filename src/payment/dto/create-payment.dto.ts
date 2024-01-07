@@ -4,6 +4,11 @@ import { ApiProperty } from "@nestjs/swagger";
 
 
 export class CreatePaymentDto {
+   constructor(userEntity) {
+      this.status = PaymentStatus.PENDING;
+      this.user = userEntity;
+      this.sum = 0;
+   }
    @ApiProperty({
       type: "enum",
       enum: PaymentStatus,

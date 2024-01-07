@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   controllers: [PaymentController],
   providers: [PaymentService],
-  imports: [TypeOrmModule.forFeature([PaymentEntity]),]
+  imports: [TypeOrmModule.forFeature([PaymentEntity]),],
+  exports: [PaymentService],
 })
 export class PaymentModule { }

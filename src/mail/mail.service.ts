@@ -10,7 +10,7 @@ export class MailService {
         const url = `example.com/auth/confirm?token=${token}`;
 
         const answer = await this.mailerService.sendMail({
-            to: user.mail,
+            to: user.email,
             // from: '"Support Team" <support@example.com>', // override default from
             subject: 'Welcome to Nice App! Confirm your Email',
             template: './confirmation', // `.hbs` extension is appended automatically
@@ -19,6 +19,5 @@ export class MailService {
                 url,
             },
         });
-        console.log(answer);
     }
 }

@@ -6,6 +6,7 @@ export enum UserRole {
     ADMIN = "admin",
     AUTHOR = "author",
     STUDENT = "student",
+    STUPID = "stupid",
 }
 
 @Entity('users')
@@ -27,7 +28,7 @@ export class UserEntity {
     datebirthday: Date;
 
     @Column({ unique: true })
-    mail: string;
+    email: string;
 
     @Column({ default: new Date() })
     date_registration: Date;
@@ -41,7 +42,7 @@ export class UserEntity {
     @Column({
         type: "enum",
         enum: UserRole,
-        default: UserRole.STUDENT,
+        default: UserRole.STUPID,
     })
     role: UserRole;
 

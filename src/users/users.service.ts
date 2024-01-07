@@ -2,16 +2,20 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
+import { UserEntity, UserRole } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { MailService } from '../mail/mail.service';
+import { RegistrationUserDto } from './dto/registration-user.dto';
+import { PaymentService } from 'src/payment/payment.service';
+import { CreatePaymentDto } from 'src/payment/dto/create-payment.dto';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private repository: Repository<UserEntity>,
-    private mailService: MailService
+    private mailService: MailService,
+    private paymentService: PaymentService,
   ) { }
 
   async createUser(createUserDto: CreateUserDto) {
@@ -20,7 +24,12 @@ export class UsersService {
 
       const { password, ...result } = userData;
 
-      await this.mailService.sendUserConfirmation(userData, 'https://copyright-chu.ru');
+      const createPaymentDto = new CreatePaymentDto(userData);
+      const payment = this.paymentService.create(createPaymentDto);
+
+      const url = `copyright-chu.ru/payment?order_id=${(await payment).id}`;
+
+      await this.mailService.sendUserConfirmation(userData, url);
 
       return result;
     }
@@ -29,19 +38,28 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.repository.find();
   }
 
   findOne(id: number) {
     return `This action returns a #${id} user`;
   }
 
+  async findOneByEmail(email: string) {
+    return await this.repository.findOneByOrFail({ email })
+  }
+
+  async registrationUser(id: number, registrationUserDto: RegistrationUserDto) {
+    registrationUserDto.role = UserRole.STUDENT;
+    return await this.repository.update({ id }, registrationUserDto);
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.repository.delete({ id });
   }
 }
