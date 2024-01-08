@@ -21,7 +21,7 @@ export class SettingsController {
     return this.settingsService.findOne();
   }
 
-  @Get()
+  @Get('all')
   @ApiOperation({ summary: 'Получить все настройки' })
   async find() {
     return this.settingsService.find();
