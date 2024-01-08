@@ -29,7 +29,9 @@ export class UsersService {
       const payment = this.paymentService.create(createPaymentDto);
       const url = `copyright-chu.ru/payment?order_id=${(await payment).id}`;
 
-      await this.mailService.sendUserConfirmation(userData, url);
+      const subject = `Ваш заказ #${(await payment).id} создан!`;
+
+      await this.mailService.sendUserConfirmation(userData, url, subject);
 
       return result;
     }
