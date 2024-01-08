@@ -17,7 +17,7 @@ export class SettingsService {
   }
 
   async findOne() {
-    return await this.repository.findOneByOrFail({ id: 1 });
+    return await this.repository.findOneByOrFail({ id: 2 });
   }
 
   async find() {
@@ -25,6 +25,6 @@ export class SettingsService {
   }
 
   async update(updateSettingDto: CreateSettingDto) {
-    return await this.repository.update({ id: 1 }, updateSettingDto);
+    return await this.repository.update({ id: 2 }, updateSettingDto);
   }
 }
