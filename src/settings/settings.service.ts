@@ -17,7 +17,7 @@ export class SettingsService {
   }
 
   async findOne() {
-    return await this.repository.findOneBy({ id: 1 });
+    return await this.repository.findOneByOrFail({ id: 1 });
   }
 
   async find() {
