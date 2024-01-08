@@ -8,6 +8,8 @@ import { MailService } from '../mail/mail.service';
 import { RegistrationUserDto } from './dto/registration-user.dto';
 import { PaymentService } from 'src/payment/payment.service';
 import { CreatePaymentDto } from 'src/payment/dto/create-payment.dto';
+import * as bcrypt from 'bcrypt';
+
 
 @Injectable()
 export class UsersService {
@@ -21,12 +23,10 @@ export class UsersService {
   async createUser(createUserDto: CreateUserDto) {
     try {
       const userData = await this.repository.save(createUserDto);
-
       const { password, ...result } = userData;
 
       const createPaymentDto = new CreatePaymentDto(userData);
       const payment = this.paymentService.create(createPaymentDto);
-
       const url = `copyright-chu.ru/payment?order_id=${(await payment).id}`;
 
       await this.mailService.sendUserConfirmation(userData, url);
@@ -42,8 +42,8 @@ export class UsersService {
     return await this.repository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.repository.findOneByOrFail({ id });
   }
 
   async findOneByEmail(email: string) {
@@ -51,7 +51,12 @@ export class UsersService {
   }
 
   async registrationUser(id: number, registrationUserDto: RegistrationUserDto) {
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(registrationUserDto.password, salt);
+
     registrationUserDto.role = UserRole.STUDENT;
+    registrationUserDto.password = hash;
+
     return await this.repository.update({ id }, registrationUserDto);
   }
 

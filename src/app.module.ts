@@ -17,6 +17,7 @@ import { MailModule } from "./mail/mail.module";
 import { SettingEntity } from "./settings/entities/setting.entity";
 import { PaymentModule } from './payment/payment.module';
 import { PaymentEntity } from "./payment/entities/payment.entity";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
 	imports: [
@@ -37,6 +38,7 @@ import { PaymentEntity } from "./payment/entities/payment.entity";
 		LessonsModule,
 		MailModule,
 		PaymentModule,
+		AuthModule,
 	],
 })
 export class AppModule { }
