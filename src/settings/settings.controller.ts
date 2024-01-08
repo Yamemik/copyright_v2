@@ -21,11 +21,11 @@ export class SettingsController {
     return this.settingsService.findOne();
   }
 
-  @Get('all')
-  @ApiOperation({ summary: 'Получить все настройки' })
-  async find() {
-    return this.settingsService.find();
-  }
+  // @Get('all')
+  // @ApiOperation({ summary: 'Получить все настройки' })
+  // async find() {
+  //   return this.settingsService.find();
+  // }
 
   @Patch()
   @ApiOperation({ summary: 'Изменить настройки' })
