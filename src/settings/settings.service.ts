@@ -20,6 +20,10 @@ export class SettingsService {
     return await this.repository.findOneBy({ id: 1 });
   }
 
+  async find() {
+    return await this.repository.find({});
+  }
+
   async update(updateSettingDto: CreateSettingDto) {
     return await this.repository.update({ id: 1 }, updateSettingDto);
   }

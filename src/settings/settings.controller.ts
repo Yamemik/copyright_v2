@@ -9,16 +9,22 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 export class SettingsController {
   constructor(private readonly settingsService: SettingsService) { }
 
-  @Post()
-  @ApiOperation({ summary: 'Создать настройки (выполнить 1 раз)' })
-  async create(@Body() createSettingDto: CreateSettingDto) {
-    return this.settingsService.create(createSettingDto);
-  }
+  // @Post()
+  // @ApiOperation({ summary: 'Создать настройки (выполнить 1 раз)' })
+  // async create(@Body() createSettingDto: CreateSettingDto) {
+  //   return this.settingsService.create(createSettingDto);
+  // }
 
   @Get()
   @ApiOperation({ summary: 'Получить настройки' })
   async findOne() {
     return this.settingsService.findOne();
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Получить все настройки' })
+  async find() {
+    return this.settingsService.find();
   }
 
   @Patch()

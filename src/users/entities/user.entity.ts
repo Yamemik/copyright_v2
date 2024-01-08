@@ -25,7 +25,7 @@ export class UserEntity {
     middle_name: string;
 
     @Column({ default: null })
-    datebirthday: Date;
+    date_birthday: Date;
 
     @Column({ unique: true })
     email: string;
