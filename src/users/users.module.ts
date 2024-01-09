@@ -15,7 +15,7 @@ import { SettingsModule } from 'src/settings/settings.module';
     TypeOrmModule.forFeature([UserEntity]),
     MailModule,
     PaymentModule,
-    SettingsModule
+    SettingsModule,
   ],
   exports: [UsersService],
 })

@@ -28,8 +28,7 @@ export class UsersService {
       const { password, ...result } = userData;
 
       const obj = JSON.parse((await this.settingsService.findOne()).object);
-      const sum = obj.landing.tariffs[Number(userData.access_level)].price
-
+      const sum = obj.landing.tariffs[Number(userData.access_level)].price;
 
       const createPaymentDto = new CreatePaymentDto(userData, sum);
       const payment = this.paymentService.create(createPaymentDto);
