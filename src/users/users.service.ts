@@ -9,6 +9,7 @@ import { RegistrationUserDto } from './dto/registration-user.dto';
 import { PaymentService } from 'src/payment/payment.service';
 import { CreatePaymentDto } from 'src/payment/dto/create-payment.dto';
 import * as bcrypt from 'bcrypt';
+import { SettingsService } from 'src/settings/settings.service';
 
 
 @Injectable()
@@ -18,6 +19,7 @@ export class UsersService {
     private repository: Repository<UserEntity>,
     private mailService: MailService,
     private paymentService: PaymentService,
+    private settingsService: SettingsService,
   ) { }
 
   async createUser(createUserDto: CreateUserDto) {
@@ -25,9 +27,13 @@ export class UsersService {
       const userData = await this.repository.save(createUserDto);
       const { password, ...result } = userData;
 
-      const createPaymentDto = new CreatePaymentDto(userData);
+      const obj = JSON.parse((await this.settingsService.findOne()).object);
+      const sum = obj.landing.tariffs[Number(userData.access_level)].price
+
+
+      const createPaymentDto = new CreatePaymentDto(userData, sum);
       const payment = this.paymentService.create(createPaymentDto);
-      const url = `copyright-chu.ru/payment?order_id=${(await payment).id}`;
+      const url = `copyright-chu.ru/payment?payment_id=${(await payment).id}`;
 
       const subject = `Ваш заказ #${(await payment).id} создан!`;
 

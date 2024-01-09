@@ -4,7 +4,7 @@ import { AppModule } from "./app.module";
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, {
-		cors: false,
+		cors: true,
 	});
 
 	const config = new DocumentBuilder().setTitle("Курсы по копирайтингу").build();

@@ -17,7 +17,7 @@ export class PaymentEntity {
    @Column({ default: new Date() })
    date_payment: Date;
 
-   @Column({ default: new Date(Date.now() + 1 * 24 * 3600 * 1000) })
+   @Column({ default: new Date(new Date().getTime() + 60 * 60 * 24 * 1000) })
    date_expire: Date;
 
    @Column({
