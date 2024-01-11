@@ -28,11 +28,13 @@ export class CoursesController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Изменить курс по id' })
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
     return this.coursesService.update(+id, updateCourseDto);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Удалить курс по id' })
   remove(@Param('id') id: string) {
     return this.coursesService.remove(+id);
   }

@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 
 export class CreateCourseDto {
-    @ApiProperty({ default: 'name_course' })
-    name: string;
+    @ApiProperty({ default: 'title_course' })
+    title: string;
 }
 

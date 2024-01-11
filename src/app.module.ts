@@ -12,12 +12,19 @@ import { CoursesModule } from "./courses/courses.module";
 import { CourseEntity } from "./courses/entities/course.entity";
 
 import { SettingsModule } from "./settings/settings.module";
+import { SettingEntity } from "./settings/entities/setting.entity";
 
 import { MailModule } from "./mail/mail.module";
-import { SettingEntity } from "./settings/entities/setting.entity";
+
 import { PaymentModule } from './payment/payment.module';
 import { PaymentEntity } from "./payment/entities/payment.entity";
+
 import { AuthModule } from './auth/auth.module';
+
+import { ReactionsModule } from './reactions/reactions.module';
+import { ReactionEntity } from "./reactions/entities/reaction.entity";
+import { TestsModule } from './tests/tests.module';
+
 
 @Module({
 	imports: [
@@ -29,7 +36,14 @@ import { AuthModule } from './auth/auth.module';
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_NAME,
-			entities: [SettingEntity, UserEntity, PaymentEntity, CourseEntity, LessonEntity],
+			entities: [
+				SettingEntity,
+				UserEntity,
+				PaymentEntity,
+				CourseEntity,
+				LessonEntity,
+				ReactionEntity,
+			],
 			synchronize: true,
 		}),
 		UsersModule,
@@ -39,6 +53,8 @@ import { AuthModule } from './auth/auth.module';
 		MailModule,
 		PaymentModule,
 		AuthModule,
+		ReactionsModule,
+		TestsModule,
 	],
 })
 export class AppModule { }

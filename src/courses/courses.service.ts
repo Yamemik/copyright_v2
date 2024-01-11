@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CourseEntity } from './entities/course.entity';
 
+
 @Injectable()
 export class CoursesService {
   constructor(
@@ -24,8 +25,8 @@ export class CoursesService {
     return await this.repository.findOneBy({ id });
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  async update(id: number, updateCourseDto: UpdateCourseDto) {
+    return await this.repository.update({ id }, updateCourseDto);
   }
 
   async remove(id: number) {

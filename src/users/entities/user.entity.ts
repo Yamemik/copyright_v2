@@ -1,4 +1,5 @@
 import { PaymentEntity } from "src/payment/entities/payment.entity";
+import { ReactionEntity } from "src/reactions/entities/reaction.entity";
 import { Column, Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 
 
@@ -50,5 +51,8 @@ export class UserEntity {
     access_level: Number;
 
     @OneToMany(() => PaymentEntity, (payment) => payment.user)
-    payment: PaymentEntity;
+    payments: PaymentEntity[];
+
+    @OneToMany(() => ReactionEntity, (reaction) => reaction.user)
+    reactions: ReactionEntity[];
 }

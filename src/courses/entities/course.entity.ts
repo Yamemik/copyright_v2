@@ -8,7 +8,7 @@ export class CourseEntity {
     id: number;
 
     @Column()
-    name: string;
+    title: string;
 
     @OneToMany(() => LessonEntity, lesson => lesson.course)
     lessons: LessonEntity[];

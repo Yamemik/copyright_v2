@@ -29,6 +29,6 @@ export class PaymentEntity {
    @Column()
    sum: Number;
 
-   @ManyToOne(() => UserEntity, (user) => user.payment, { onDelete: "CASCADE" })
+   @ManyToOne(() => UserEntity, (user) => user.payments, { onDelete: "CASCADE" })
    user: UserEntity;
 }
