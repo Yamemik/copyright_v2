@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { CourseEntity } from "src/courses/entities/course.entity";
 import { ReactionEntity } from "src/reactions/entities/reaction.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -5,36 +6,47 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "ty
 
 @Entity('lessons')
 export class LessonEntity {
-	@PrimaryGeneratedColumn()
-	id: number;
+   @PrimaryGeneratedColumn()
+   @ApiProperty()
+   id: number;
 
-	@Column()
-	title: string;
+   @Column()
+   @ApiProperty()
+   title: string;
 
-	@Column()
-	content: string;
+   @Column()
+   @ApiProperty()
+   content: string;
 
-	@Column()
-	preview: string;
+   @Column()
+   @ApiProperty()
+   preview: string;
 
-	@Column({ default: new Date() })
-	date_create: Date;
+   @Column({ default: new Date() })
+   @ApiProperty()
+   date_create: Date;
 
-	@Column({ default: new Date() })
-	date_last_update: Date;
+   @Column({ default: new Date() })
+   @ApiProperty()
+   date_last_update: Date;
 
-	@Column()
-	complexity: Number;
+   @Column()
+   @ApiProperty()
+   complexity: Number;
 
-	@Column()
-	lesson_for_time: string;
+   @Column()
+   @ApiProperty()
+   lesson_for_time: string;
 
-	@Column("simple-array", { default: null })
-	homework: string[];
+   @Column("simple-array", { default: null })
+   @ApiProperty()
+   homework: string[];
 
-	@OneToMany(() => ReactionEntity, (reaction) => reaction.lesson)
-	reactions: ReactionEntity[];
+   @OneToMany(() => ReactionEntity, (reaction) => reaction.lesson)
+   @ApiProperty()
+   reactions: ReactionEntity[];
 
-	@ManyToOne(() => CourseEntity, course => course.lessons)
-	course: CourseEntity;
+   @ManyToOne(() => CourseEntity, course => course.lessons)
+   @ApiProperty()
+   course: CourseEntity;
 }

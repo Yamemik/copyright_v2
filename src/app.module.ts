@@ -23,7 +23,15 @@ import { AuthModule } from './auth/auth.module';
 
 import { ReactionsModule } from './reactions/reactions.module';
 import { ReactionEntity } from "./reactions/entities/reaction.entity";
+
 import { TestsModule } from './tests/tests.module';
+import { TestEntity } from "./tests/entities/test.entity";
+
+import { AdvancesModule } from './advances/advances.module';
+import { AdvanceEntity } from "./advances/entities/advance.entity";
+
+import { ResultsModule } from './results/results.module';
+import { ResultEntity } from "./results/entities/result.entity";
 
 
 @Module({
@@ -43,6 +51,10 @@ import { TestsModule } from './tests/tests.module';
 				CourseEntity,
 				LessonEntity,
 				ReactionEntity,
+				ResultEntity,
+				TestEntity,
+				AdvanceEntity,
+				UserEntity,
 			],
 			synchronize: true,
 		}),
@@ -55,6 +67,8 @@ import { TestsModule } from './tests/tests.module';
 		AuthModule,
 		ReactionsModule,
 		TestsModule,
+		AdvancesModule,
+		ResultsModule,
 	],
 })
 export class AppModule { }
