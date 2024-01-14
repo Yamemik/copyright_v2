@@ -4,6 +4,8 @@ import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from 'src/users/dto/login-user.dto';
 import { RegistrationUserDto } from 'src/users/dto/registration-user.dto';
 import { AuthService } from './auth.service';
+import { UserEntity } from 'src/users/entities/user.entity';
+import { LocalAuthGuard } from './local-auth.guard';
 
 
 @Controller('api/auth')
@@ -13,12 +15,12 @@ export class AuthController {
       private readonly authService: AuthService,
    ) { }
 
-   @UseGuards(AuthGuard('local'))
+   @UseGuards(LocalAuthGuard)
    @Post('login')
    @ApiBody({ type: LoginUserDto })
    @ApiOperation({ summary: 'Авторизация' })
    async login(@Request() req) {
-      return req.user;
+      return this.authService.loginUser(req.user as UserEntity);
    }
 
    @Patch('reg/:id')
