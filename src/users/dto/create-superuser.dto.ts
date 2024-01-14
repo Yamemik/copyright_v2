@@ -6,7 +6,7 @@ export class CreateSuperUserDto {
    @ApiProperty({ default: 'kuancarlos@mail.ru' })
    email: string;
 
-   @ApiProperty({ default: 9 })
+   @ApiProperty({ default: 3 })
    access_level: Number;
 
    @ApiProperty({ default: "admin" })
