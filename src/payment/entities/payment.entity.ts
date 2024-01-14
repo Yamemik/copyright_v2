@@ -36,6 +36,6 @@ export class PaymentEntity {
    sum: Number;
 
    @ManyToOne(() => UserEntity, (user) => user.payments, { onDelete: "CASCADE" })
-   @ApiProperty()
+   @ApiProperty({ type: () => UserEntity })
    user: UserEntity;
 }

@@ -15,11 +15,11 @@ export class ResultEntity {
    result: Number;
 
    @ManyToOne(() => TestEntity, (test) => test.results, { onDelete: "CASCADE" })
-   @ApiProperty()
+   @ApiProperty({ type: () => TestEntity })
    test: TestEntity;
 
    @ManyToOne(() => UserEntity, (user) => user.results, { onDelete: "CASCADE" })
-   @ApiProperty()
+   @ApiProperty({ type: () => UserEntity })
    user: UserEntity;
 
 }

@@ -47,6 +47,6 @@ export class LessonEntity {
    reactions: ReactionEntity[];
 
    @ManyToOne(() => CourseEntity, course => course.lessons)
-   @ApiProperty()
+   @ApiProperty({ type: () => CourseEntity })
    course: CourseEntity;
 }

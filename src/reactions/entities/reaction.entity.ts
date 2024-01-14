@@ -24,10 +24,10 @@ export class ReactionEntity {
    reaction: EnumReaction;
 
    @ManyToOne(() => LessonEntity, lesson => lesson.reactions)
-   @ApiProperty()
+   @ApiProperty({ type: () => LessonEntity })
    lesson: LessonEntity;
 
    @ManyToOne(() => UserEntity, user => user.reactions)
-   @ApiProperty()
+   @ApiProperty({ type: () => UserEntity })
    user: UserEntity;
 }

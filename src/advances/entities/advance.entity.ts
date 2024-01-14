@@ -11,17 +11,17 @@ export class AdvanceEntity {
    id: Number;
 
    @ManyToMany(() => CourseEntity)
-   @ApiProperty()
    @JoinTable()
+   @ApiProperty({ type: () => CourseEntity })
    courses_in_progress: CourseEntity[];
 
    @ManyToMany(() => CourseEntity)
    @JoinTable()
-   @ApiProperty()
+   @ApiProperty({ type: () => CourseEntity })
    courses_is_completed: CourseEntity[];
 
    @ManyToMany(() => LessonEntity)
    @JoinTable()
-   @ApiProperty()
+   @ApiProperty({ type: () => LessonEntity })
    lessons_is_completed: LessonEntity[];
 }
